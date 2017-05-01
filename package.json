@@ -1,0 +1,23 @@
+{
+  "name": "spul-server",
+  "version": "0.12.0",
+  "description": "MQTT connector for the SPUL protocol.",
+  "main": "lib/connector.js",
+  "scripts": {
+    "start": "node lib/connector.js",
+    "test": "node tools/test.js"
+  },
+  "author": "Kukua Team <dev@kukua.cc>",
+  "license": "MIT",
+  "homepage": "https://github.com/kukua/concava-connector-spul#readme",
+  "dependencies": {
+    "bunyan": "^1.8.0",
+    "mqtt": "^1.7.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.6.5",
+    "babel-preset-es2015": "^6.24.1",
+    "eslint": "^2.8.0",
+    "pre-commit": "^1.1.2"
+  }
+}
