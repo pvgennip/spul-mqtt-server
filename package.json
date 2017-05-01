@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pvgennip/spul-mqtt-server.git"
+    "url": "git+https://github.com/pvgennip/spul-server.git"
   },
   "author": "Kukua Team <dev@kukua.cc>",
   "license": "MIT",
