@@ -7,6 +7,10 @@
     "start": "node lib/connector.js",
     "test": "node tools/test.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pvgennip/spul-mqtt-server.git"
+  },
   "author": "Kukua Team <dev@kukua.cc>",
   "license": "MIT",
   "homepage": "https://github.com/kukua/concava-connector-spul#readme",
