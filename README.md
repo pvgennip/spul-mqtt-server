@@ -11,13 +11,13 @@ The project documentation is hosted on [http://kukua.github.io/concava-connector
 The SPUL connector can be run as a NodeJS program or in a Docker container.
 
 Make sure [ConCaVa](https://github.com/kukua/concava) is setup as well.
-See [`.env.example`](https://github.com/kukua/concava-connector-spul/tree/master/.env.example) for the default configuration.
+See [`.env.example`](https://github.com/pvgennip/spul-mqtt-server/tree/master/.env.example) for the default configuration.
 
 ### NodeJS
 
 ```bash
-git clone https://github.com/kukua/concava-connector-spul.git
-cd concava-connector-spul
+git clone https://github.com/pvgennip/spul-mqtt-server.git
+cd spul-mqtt-server
 cp .env.example .env
 chmod 600 .env
 # > Edit .env
@@ -35,26 +35,26 @@ Tested with NodeJS v5.1
 First, [install Docker](http://docs.docker.com/engine/installation/). Then run:
 
 ```bash
-curl https://raw.githubusercontent.com/kukua/concava-connector-spul/master/.env.example > .env
+curl https://raw.githubusercontent.com/pvgennip/spul-mqtt-server/master/.env.example > .env
 chmod 600 .env
 # > Edit .env
 
 docker run -d -p 3333:3333 -p 5555:5555 \
 	-v ./spul.log:/tmp/output.log
-	--env-file .env --name spul_connector \
-	kukuadev/concava-connector-spul
+	--env-file .env --name spul-mqtt-server \
+	pvgennip/spul-mqtt-server
 ```
 
 Tested with Docker v1.9.
 
 ## Test
 
-Make sure a SPUL container is running with the name 'spul_connector'. Then run:
+Make sure a SPUL container is running with the name 'spul-mqtt-server'. Then run:
 
 ```js
 source .env
 npm test
-docker logs spul_connector
+docker logs spul-mqtt-server
 ```
 
 ## Contribute
