@@ -1,6 +1,6 @@
 # SPUL Connector
 
-> SPUL connector for splitting spul buffers into binary payloads and forwarding it to ConCaVa.
+> SPUL connector for splitting spul buffers into payloads and forwarding it to MQTT.
 
 ## Documentation
 
