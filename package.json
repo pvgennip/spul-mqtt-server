@@ -16,9 +16,7 @@
   "homepage": "https://github.com/kukua/concava-connector-spul#readme",
   "dependencies": {
     "bunyan": "^1.8.0",
-    "dotenv": "^4.0.0",
-    "mqtt": "^1.7.4",
-    "node-env-file": "^0.1.8"
+    "mqtt": "^1.7.4"
   },
   "devDependencies": {
     "babel-cli": "^6.6.5",

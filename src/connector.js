@@ -2,9 +2,6 @@ import net from 'net'
 import bunyan from 'bunyan'
 import mqtt from 'mqtt'
 
-var env = require('node-env-file');
-env('.env');
-
 // Logger
 const debug = (process.env['DEBUG'] === 'true' || process.env['DEBUG'] === '1')
 const logFile = (process.env['LOG_FILE'] || '/tmp/output.log')
