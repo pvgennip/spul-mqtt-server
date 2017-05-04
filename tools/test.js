@@ -2,8 +2,8 @@ const net = require('net');
 
 const host          = (process.env['SPUL_HOST'] || 'localhost') 
 const bigEndian     = (process.env['BIG_ENDIAN'] !== 'false' && process.env['BIG_ENDIAN'] !== '0')
-const timestampPort = (parseInt(process.env['SPUL_TS_PORT']) || 3333)
-const payloadPort   = (parseInt(process.env['SPUL_PORT']) || 5555)
+const timestampPort = (parseInt(process.env['SPUL_TS_PORT']) || 9007)
+const payloadPort   = (parseInt(process.env['SPUL_PORT']) || 9008)
 
 function rand (min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min

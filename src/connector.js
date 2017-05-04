@@ -27,7 +27,7 @@ const headerSize    = (1 * process.env['HEADER_SIZE'] || 12)
 const maxFrameSize  = (1 * process.env['MAX_FRAME_SIZE'] || (512 - headerSize))
 const mqttHost      = (process.env['MQTT_HOST'] || 'localhost')
 const mqttUser      = (process.env['MQTT_USER'] || '')
-const mqttPass      = new Buffer(process.env['MQTT_PASS'] || '');
+const mqttPass      = (process.env['MQTT_PASS'] || '');
 const mqttTopic     = (process.env['MQTT_TOPIC'] || 'data');
 
 // Timestamp server
@@ -96,8 +96,8 @@ var payloadServer = net.createServer((socket) => {
 
 		var client = mqtt.connect('mqtt://' + mqttHost, {
 			clientId: deviceId,
-			username: mqttUser,
-			password: mqttPass,
+			username: authToken == '' ? mqttUser : '',
+			password: authToken == '' ? mqttPass : authToken,
 			connectTimeout: 3000, // ms
 		})
 		client.on('error', function(err)
