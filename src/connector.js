@@ -1,3 +1,5 @@
+require('dotenv').config({path: __dirname + '../.env'})
+
 import net from 'net'
 import bunyan from 'bunyan'
 import mqtt from 'mqtt'
