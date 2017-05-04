@@ -1,8 +1,8 @@
-require('dotenv').config({path: __dirname + '../.env'})
-
 import net from 'net'
 import bunyan from 'bunyan'
 import mqtt from 'mqtt'
+
+require('dotenv').config({path: '../.env'});
 
 // Logger
 const debug = (process.env['DEBUG'] === 'true' || process.env['DEBUG'] === '1')
