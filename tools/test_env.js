@@ -1,4 +1,5 @@
-require('dotenv').config({path: '../.env'})
+var env = require('node-env-file');
+env('.env');
 
 console.log(process.env['MQTT_HOST']);
 console.log(process.env['MQTT_USER']);
