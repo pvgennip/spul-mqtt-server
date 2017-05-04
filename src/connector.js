@@ -27,7 +27,7 @@ const headerSize    = (1 * process.env['HEADER_SIZE'] || 12)
 const maxFrameSize  = (1 * process.env['MAX_FRAME_SIZE'] || (512 - headerSize))
 const mqttHost      = (process.env['MQTT_HOST'] || 'localhost')
 const mqttUser      = (process.env['MQTT_USER'] || '')
-const mqttPass      = (process.env['MQTT_PASS'] || '');
+const mqttPass      = new Buffer(process.env['MQTT_PASS'] || '');
 const mqttTopic     = (process.env['MQTT_TOPIC'] || 'data');
 
 // Timestamp server

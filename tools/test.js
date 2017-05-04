@@ -31,7 +31,7 @@ function testPayload (cb) {
 	// Payload
 	console.log('Connecting to payload server..')
 
-	const frames = 5
+	const frames = 1
 	const maxNumBlocks = 3
 	const maxBlockSize = 4
 	const headerSize = 12
