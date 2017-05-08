@@ -19,8 +19,8 @@ process.on('uncaughtException', (err) => {
 })
 
 // Configuration
-const timestampPort = (parseInt(process.env['SPUL_TS_PORT']) || 3333)
-const payloadPort   = (parseInt(process.env['SPUL_PORT']) || 5555)
+const timestampPort = (parseInt(process.env['SPUL_TS_PORT']) || 9007)
+const payloadPort   = (parseInt(process.env['SPUL_PORT']) || 9008)
 const socketTimeout = (parseInt(process.env['SOCKET_TIMEOUT']) || 30 * 1000) // ms
 const bigEndian     = (process.env['BIG_ENDIAN'] !== 'false' && process.env['BIG_ENDIAN'] !== '0')
 const headerSize    = (1 * process.env['HEADER_SIZE'] || 12)
