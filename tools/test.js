@@ -35,8 +35,8 @@ function testPayload (cb) {
 	const maxNumBlocks = 3
 	const maxBlockSize = 4
 	const headerSize = 12
-	const deviceId = '0000000000000538'
-	const deviceIdBuf = new Buffer(deviceId, 'hex')
+	const deviceId = '00:00:E0:DB:40:60:45:00'
+	const deviceIdBuf = new Buffer(deviceId)
 
 	for (let i = 0; i < frames; i += 1) {
 		let client = net.Socket()
