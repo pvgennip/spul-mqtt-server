@@ -23,12 +23,19 @@ const timestampPort = (parseInt(process.env['SPUL_TS_PORT']) || 9007)
 const payloadPort   = (parseInt(process.env['SPUL_PORT']) || 9008)
 const socketTimeout = (parseInt(process.env['SOCKET_TIMEOUT']) || 30 * 1000) // ms
 const bigEndian     = (process.env['BIG_ENDIAN'] !== 'false' && process.env['BIG_ENDIAN'] !== '0')
+const littleEndianPayload= process.env['LITTLE_ENDIAN_PAYLOAD'] !== 'false' && process.env['LITTLE_ENDIAN_PAYLOAD'] !== '0';
 const headerSize    = (1 * process.env['HEADER_SIZE'] || 12)
 const maxFrameSize  = (1 * process.env['MAX_FRAME_SIZE'] || (512 - headerSize))
 const mqttHost      = (process.env['MQTT_HOST'] || 'localhost')
 const mqttUser      = (process.env['MQTT_USER'] || '')
 const mqttPass      = new Buffer(process.env['MQTT_PASS'] || '');
 const mqttTopic     = (process.env['MQTT_TOPIC'] || 'data');
+
+var getHexPayload = function(buf)
+{
+	hexBuf = buf.toString('hex');
+	return littleEndianPayload ? hexBuf.match(/.{2}/g).reverse().join("") : hexBuf;
+}
 
 // Timestamp server
 var timestamps = net.createServer((socket) => {
@@ -83,7 +90,7 @@ var payloadServer = net.createServer((socket) => {
 			log.error({
 				type: 'error', timestamp,
 				addr, deviceId, blocks, size,
-				payload: buf.slice(headerSize).toString('hex'),
+				payload: getHexPayload(buf.slice(headerSize)),
 			}, 'Max frame size exceeded. Skipping')
 			return
 		}
@@ -91,7 +98,7 @@ var payloadServer = net.createServer((socket) => {
 		log.info({
 			type: 'data', timestamp,
 			addr, deviceId, blocks, size,
-			payload: buf.slice(headerSize).toString('hex')
+			payload: getHexPayload(buf.slice(headerSize))
 		})
 
 		var client = mqtt.connect('mqtt://' + mqttHost, {
@@ -112,12 +119,12 @@ var payloadServer = net.createServer((socket) => {
 		{
 			for (let i = 0; i < blocks; i += 1) {
 				let start = headerSize + i * size
-				let payload = buf.slice(start, start + size)
+				let payload = getHexPayload(buf.slice(start, start + size))
 
 				log.info({
 					type: 'payload', timestamp,
 					addr, deviceId, mqttTopic
-				}, payload.toString('hex'))
+				}, payload)
 
 				client.publish(mqttTopic, payload)
 			}
