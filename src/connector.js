@@ -34,7 +34,7 @@ const mqttTopic     = (process.env['MQTT_TOPIC'] || 'data');
 var getHexPayload = function(buf)
 {
 	hexBuf = buf.toString('hex');
-	return littleEndianPayload ? hexBuf.match(/.{2}/g).reverse().join("") : hexBuf;
+	return littleEndianPayload && hexBuf != null ? hexBuf.match(/.{2}/g).reverse().join("") : hexBuf;
 }
 
 // Timestamp server
@@ -121,12 +121,20 @@ var payloadServer = net.createServer((socket) => {
 				let start = headerSize + i * size
 				let payload = getHexPayload(buf.slice(start, start + size))
 
-				log.info({
-					type: 'payload', timestamp,
-					addr, deviceId, mqttTopic
-				}, payload)
+				if (payload != null)
+				{
+					log.info({
+						type: 'payload', timestamp: timestamp,
+						addr: addr, deviceId: deviceId, topic: mqttTopic
+					}, payload);
 
-				client.publish(mqttTopic, payload)
+					client.publish(mqttTopic, payload);
+				}
+				else
+				{
+					log.error('cannot hex payload block: '+i+', slice_start: '+start+', slice_end: '+(start+size)+', payload='+payload, {timestamp: timestamp,
+						addr: addr, deviceId: deviceId, topic: mqttTopic });
+				}
 			}
 
 			client.end()
