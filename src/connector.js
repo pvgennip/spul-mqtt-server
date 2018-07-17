@@ -33,8 +33,9 @@ const mqttTopic     = (process.env['MQTT_TOPIC'] || 'data');
 
 var getHexPayload = function(buf)
 {
-	hexBuf = buf.toString('hex');
-	return littleEndianPayload && hexBuf != null ? hexBuf.match(/.{2}/g).reverse().join("") : hexBuf;
+	// hexBuf = buf.toString('hex');
+	// return littleEndianPayload && hexBuf != null ? hexBuf.match(/.{2}/g).reverse().join("") : hexBuf;
+	return buf;
 }
 
 // Timestamp server
