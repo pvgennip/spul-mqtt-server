@@ -1,6 +1,6 @@
 #!/bin/sh 
 
-sudo ln -s etc_systemd_system_spulserver /etc/systemd/system/spulserver.service
+sudo ln -s /root/spul-mqtt-server/etc_systemd_system_spulserver /etc/systemd/system/spulserver.service
 
 systemctl enable spulserver
 systemctl start spulserver
