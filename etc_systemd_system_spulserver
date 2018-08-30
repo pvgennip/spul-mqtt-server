@@ -2,14 +2,13 @@
 Description=spulserver
 
 [Service]
-ExecStart=/root/spul-mqtt-server/lib/connector.js
+ExecStart=/usr/bin/node /root/spul-mqtt-server/lib/connector.js
 Restart=always
-User=nobody
-# Note Debian/Ubuntu uses 'nogroup', RHEL/Fedora uses 'nobody'
+User=root
 Group=nogroup
 Environment=PATH=/usr/bin:/usr/local/bin
 Environment=NODE_ENV=production
-WorkingDirectory=/root/spul/mqtt-server/
+WorkingDirectory=/root/spul-mqtt-server/
 
 [Install]
 WantedBy=multi-user.target
