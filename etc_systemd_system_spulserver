@@ -1,5 +1,5 @@
 [Unit]
-Description=spulserver
+Description=SPUL server at port 9007 and 9008 connecting to MQTT at port 1883
 
 [Service]
 ExecStart=/usr/bin/node /root/spul-mqtt-server/lib/connector.js
