@@ -1,7 +1,8 @@
+require('dotenv').config();
 const net = require('net');
 
 const host          = ('sensors.akvo.org') 
-const bigEndian     = (false)
+const bigEndian     = (true)
 const timestampPort = (parseInt(process.env['SPUL_TS_PORT']) || 9007)
 const payloadPort   = (parseInt(process.env['SPUL_PORT']) || 9008)
 
